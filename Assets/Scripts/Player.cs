@@ -8,10 +8,11 @@ public class Player : MonoBehaviour
     Animator _animator;
     float turnAmount;
     float forwardAmount;
-
+    [SerializeField] GameObject sound;
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        sound.SetActive(false);
     }
 
     public void Move(Vector3 move)
@@ -24,10 +25,13 @@ public class Player : MonoBehaviour
         transform.Rotate(Vector3.up, turnAmount * rotationSpeed * Time.deltaTime);
         if(forwardAmount > 0.5)
         {
+            //SoundManagerScripts.PlayerWalk("Walk");
+            sound.SetActive(true);
             _animator.SetBool("Walk", true);
         }
         else
         {
+            sound.SetActive(false);
             _animator.SetBool("Walk", false);
         }
     }
