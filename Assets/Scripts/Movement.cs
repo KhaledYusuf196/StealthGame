@@ -29,7 +29,8 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        CameraTransform.position = transform.position + Offset;
+        //CameraTransform.position = transform.position + Offset;
+        CameraTransform.LookAt(transform.position);
         player.Move(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")));
         //_translation = Input.GetAxisRaw("Vertical");
 
