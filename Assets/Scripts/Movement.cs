@@ -33,9 +33,7 @@ public class Movement : MonoBehaviour
         CameraTransform.LookAt(transform.position);
         player.Move(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")));
         //_translation = Input.GetAxisRaw("Vertical");
-
         //_rotation = Input.GetAxisRaw("Horizontal");
-
         //if (_rotation != 0)
         //{
         //    movingRight(_rotation);
@@ -53,6 +51,14 @@ public class Movement : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("WinningCube"))
+        {
+            GameManger.Instance.Won();
+        }
+    }
+
     //private void movingRight(float _rotationVal)
     //{
     //    if (_rotationVal >0)
@@ -62,7 +68,7 @@ public class Movement : MonoBehaviour
     //    }
     //    else if(_rotationVal < 0)
     //        transform.Rotate(0,-Characterrotation, 0);
-        
+
     //}
 
 }

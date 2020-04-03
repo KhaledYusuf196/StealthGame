@@ -16,6 +16,7 @@ public class EnemyGhostTracker : MonoBehaviour
 
     void Start()
     {
+        
         MaxDetictDuration = DetictDuration;
         Sqr_range = range * range;
     }
@@ -32,9 +33,15 @@ public class EnemyGhostTracker : MonoBehaviour
                 if(!Physics.Raycast(raycast,out Hit,(transform.position-Player.position).magnitude, WallLayerMask))
                 {
                     deticted = true;
+                    
                     DetictDuration -= Time.deltaTime;
-                    if(DetictDuration<=0)
-                    Debug.Log("Lose");
+
+                    if (DetictDuration <= 0)
+                    {
+                        GameManger.Instance.Lost();
+
+                        Debug.Log("Lose");
+                    }
                 }
 
             }
@@ -47,6 +54,7 @@ public class EnemyGhostTracker : MonoBehaviour
 
         Debug.Log(DetictDuration);
     }
+
 
     private void OnDrawGizmos()
     {
