@@ -9,6 +9,8 @@ public class GameManger : MonoBehaviour
 
     [SerializeField] GameObject Win;
     [SerializeField] GameObject Lose;
+    [SerializeField] Transform Player;
+    Vector3 startPosition;
     
     
     private static GameManger instance;
@@ -29,7 +31,7 @@ public class GameManger : MonoBehaviour
     }
     void Start()
     {
-            
+        startPosition = Player.position;
     }
    
     void Update()
@@ -57,7 +59,7 @@ public class GameManger : MonoBehaviour
 
     public void restScene()
     {
-        SceneManager.LoadScene(0);
+        Player.position = startPosition;
         Win.SetActive(false);
         Lose.SetActive(false);
     }
